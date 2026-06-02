@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Outdo System – Web Development & Digital Marketing Agency. Creative Solutions. Real Results. We Grow, You Grow."/>
+<title>Outdo System | Web Development & Digital Marketing Agency</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;800;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet"/>
+
+<style>
+:root{
+  --red:#E30613;--red-dark:#b00510;--red-glow:rgba(227,6,19,.28);
+  --black:#000;--bm:#0d0d0d;--bs:#141414;--bc:#1a1a1a;
+  --w:#fff;--wm:rgba(255,255,255,.68);--wf:rgba(255,255,255,.05);
+  --fd:'Bebas Neue',sans-serif;--fh:'Barlow Condensed',sans-serif;--fb:'DM Sans',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);background:var(--black);color:var(--w);overflow-x:hidden}
+img{max-width:100%}
+a{text-decoration:none}
+
+/* scrollbar */
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--black)}
+::-webkit-scrollbar-thumb{background:var(--red);border-radius:3px}
+
+/* ── LOADER ── */
+#loader{position:fixed;inset:0;background:var(--black);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;transition:opacity .6s ease}
+#loader.hide{opacity:0;pointer-events:none}
+.ld-logo{font-family:var(--fd);font-size:clamp(2.4rem,5vw,4.5rem);letter-spacing:.06em;color:var(--w)}
+.ld-logo span{color:var(--red)}
+.ld-sub{font-family:var(--fh);font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.35)}
+.ld-bar{width:220px;height:2px;background:rgba(255,255,255,.08);position:relative;overflow:hidden}
+.ld-bar::after{content:'';position:absolute;left:0;top:0;height:100%;background:var(--red);animation:ldbar 1.6s ease forwards}
+@keyframes ldbar{from{width:0}to{width:100%}}
+
+/* ── NAV ── */
+#nav{position:fixed;top:0;width:100%;z-index:1000;transition:background .35s,box-shadow .35s}
+#nav.scrolled{background:rgba(0,0,0,.95);box-shadow:0 2px 28px rgba(227,6,19,.12);backdrop-filter:blur(14px)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:18px 48px}
+.nav-brand{font-family:var(--fd);font-size:1.85rem;color:var(--w);letter-spacing:.05em}
+.nav-brand span{color:var(--red)}
+.nav-links{display:flex;align-items:center;gap:4px;list-style:none}
+.nav-links a{font-family:var(--fh);font-size:.92rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--wm);padding:8px 14px;position:relative;transition:color .22s}
+.nav-links a::after{content:'';position:absolute;bottom:4px;left:14px;right:14px;height:2px;background:var(--red);transform:scaleX(0);transform-origin:right;transition:transform .28s ease}
+.nav-links a:hover,.nav-links a.active{color:var(--w)}
+.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1);transform-origin:left}
+.nav-cta{background:var(--red)!important;color:var(--w)!important;padding:10px 22px!important;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));transition:background .22s!important}
+.nav-cta::after{display:none!important}
+.nav-cta:hover{background:var(--red-dark)!important}
+.nav-toggle{display:none;background:none;border:none;color:var(--w);font-size:1.6rem;cursor:pointer}
+
+/* mobile nav */
+.mob-nav{display:none;position:fixed;inset:0;background:var(--black);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:28px}
+.mob-nav.open{display:flex}
+.mob-nav a{font-family:var(--fd);font-size:2.6rem;color:var(--w);letter-spacing:.06em;transition:color .2s}
+.mob-nav a:hover{color:var(--red)}
+.mob-close{position:absolute;top:24px;right:28px;background:none;border:none;color:var(--w);font-size:2rem;cursor:pointer}
+
+/* ── BTNS ── */
+.btn-r{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:var(--w);font-family:var(--fh);font-weight:700;font-size:.98rem;letter-spacing:.08em;text-transform:uppercase;padding:14px 32px;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px));border:none;cursor:pointer;transition:background .22s,transform .22s,box-shadow .22s}
+.btn-r:hover{background:var(--red-dark);color:var(--w);transform:translateY(-2px);box-shadow:0 8px 28px var(--red-glow)}
+.btn-o{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--w);font-family:var(--fh);font-weight:700;font-size:.98rem;letter-spacing:.08em;text-transform:uppercase;padding:12px 32px;border:2px solid rgba(255,255,255,.28);clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px));cursor:pointer;transition:border-color .22s,color .22s,transform .22s}
+.btn-o:hover{border-color:var(--red);color:var(--red);transform:translateY(-2px)}
+.btn-w{display:inline-flex;align-items:center;gap:8px;background:var(--w);color:var(--red);font-family:var(--fh);font-weight:800;font-size:.98rem;letter-spacing:.08em;text-transform:uppercase;padding:14px 34px;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px));border:none;cursor:pointer;transition:background .22s,color .22s,transform .22s}
+.btn-w:hover{background:var(--black);color:var(--w);transform:translateY(-2px)}
+
+/* ── SECTION UTILS ── */
+.sp{padding:100px 0}.sp-sm{padding:70px 0}
+.s-label{font-family:var(--fh);font-size:.8rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--red);margin-bottom:10px;display:block}
+.s-title{font-family:var(--fd);font-size:clamp(2.6rem,4.5vw,4.2rem);color:var(--w);line-height:1;letter-spacing:.02em;margin-bottom:18px}
+.s-title span{color:var(--red)}
+.s-sub{font-size:.96rem;color:var(--wm);line-height:1.75;max-width:540px}
+.divider{width:52px;height:3px;background:var(--red);margin:0 0 22px;position:relative}
+.divider::after{content:'';position:absolute;left:62px;top:0;width:10px;height:3px;background:var(--red)}
+.divider.mx-auto{margin:0 auto 22px}
+
+/* grid bg */
+.gbg::before{content:'';position:absolute;inset:0;z-index:0;background-image:linear-gradient(rgba(227,6,19,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(227,6,19,.04) 1px,transparent 1px);background-size:70px 70px;pointer-events:none}
+
+/* ── HERO ── */
+#hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;background:var(--black)}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 60% 50%,rgba(227,6,19,.11) 0%,transparent 60%),radial-gradient(ellipse 40% 35% at 85% 15%,rgba(227,6,19,.07) 0%,transparent 55%),linear-gradient(135deg,#000 0%,#0d0d0d 100%)}
+.hero-cont{position:relative;z-index:2}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(227,6,19,.1);border:1px solid rgba(227,6,19,.28);color:var(--red);font-family:var(--fh);font-size:.78rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;padding:8px 18px;margin-bottom:22px}
+.hero-h1{font-family:var(--fd);font-size:clamp(3.4rem,8vw,8rem);line-height:.94;letter-spacing:.02em;color:var(--w);margin-bottom:6px}
+.hero-h1 .stroke{-webkit-text-stroke:2px var(--red);color:transparent}
+.hero-h1 .red{color:var(--red)}
+.hero-sub{font-size:1.05rem;color:var(--wm);line-height:1.72;max-width:460px;margin:18px 0 34px}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+.hero-stats{display:flex;gap:36px;margin-top:56px;padding-top:36px;border-top:1px solid rgba(255,255,255,.07);flex-wrap:wrap}
+.hstat-n{font-family:var(--fd);font-size:2.3rem;color:var(--red);line-height:1}
+.hstat-l{font-size:.76rem;color:var(--wm);text-transform:uppercase;letter-spacing:.1em}
+
+/* hero visual */
+.h-rings{position:relative;width:400px;height:400px}
+.ring{position:absolute;border-radius:50%;border:1px solid rgba(227,6,19,.18);animation:hspin linear infinite}
+.ring:nth-child(1){inset:0;animation-duration:20s}
+.ring:nth-child(2){inset:28px;border-color:rgba(255,255,255,.06);animation-duration:14s;animation-direction:reverse}
+.ring:nth-child(3){inset:66px;border-color:rgba(227,6,19,.12);animation-duration:24s}
+.ring:nth-child(4){inset:106px;border-color:rgba(255,255,255,.04);animation-duration:11s;animation-direction:reverse}
+@keyframes hspin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.ring-dot{position:absolute;width:9px;height:9px;background:var(--red);border-radius:50%;top:-4px;left:50%;transform:translateX(-50%);box-shadow:0 0 10px var(--red)}
+.h-icon-box{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.h-icon{width:150px;height:150px;background:linear-gradient(135deg,var(--red) 0%,var(--red-dark) 100%);display:flex;align-items:center;justify-content:center;font-size:3.8rem;color:var(--w);clip-path:polygon(20px 0,100% 0,100% calc(100% - 20px),calc(100% - 20px) 100%,0 100%,0 20px);animation:pulse 3s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 20px var(--red-glow)}50%{box-shadow:0 0 50px var(--red-glow),0 0 80px rgba(227,6,19,.13)}}
+.fc{position:absolute;background:var(--bc);border:1px solid rgba(255,255,255,.07);padding:12px 18px;display:flex;align-items:center;gap:11px}
+.fc1{top:36px;left:-28px}.fc2{bottom:52px;right:-28px}
+.fc-ico{width:36px;height:36px;background:var(--red);display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0}
+.fc-l{font-size:.66rem;color:var(--wm);text-transform:uppercase;letter-spacing:.1em}
+.fc-v{font-family:var(--fh);font-size:1.05rem;font-weight:700;color:var(--w)}
+
+/* ── STATS BAR ── */
+#statsbar{background:var(--red)}
+.sbar{display:flex;flex-wrap:wrap}
+.sb-item{flex:1;min-width:160px;padding:38px 28px;text-align:center;border-right:1px solid rgba(255,255,255,.14)}
+.sb-item:last-child{border-right:none}
+.sb-n{font-family:var(--fd);font-size:3.2rem;color:var(--w);line-height:1}
+.sb-t{font-family:var(--fh);font-size:.8rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:rgba(255,255,255,.78);margin-top:5px}
+
+/* ── ABOUT ── */
+#about{background:var(--bm)}
+.about-img{background:linear-gradient(135deg,var(--bc) 0%,var(--bm) 100%);border:1px solid rgba(255,255,255,.05);height:480px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.about-grid-pat{position:absolute;inset:0;background-image:linear-gradient(rgba(227,6,19,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(227,6,19,.05) 1px,transparent 1px);background-size:38px 38px}
+.about-badge{position:absolute;bottom:-18px;right:-18px;background:var(--red);padding:26px 30px;text-align:center}
+.about-badge-n{font-family:var(--fd);font-size:2.8rem;color:var(--w);line-height:1}
+.about-badge-t{font-family:var(--fh);font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.78);margin-top:4px}
+.mv-cards{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:10px}
+.mv-card{background:var(--bc);padding:28px 26px;border:1px solid rgba(255,255,255,.04)}
+.mv-card.red-card{background:var(--red)}
+.mv-ico{font-size:2rem;color:var(--red);margin-bottom:14px}
+.mv-card.red-card .mv-ico{color:var(--w)}
+.mv-t{font-family:var(--fh);font-size:1.1rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--w);margin-bottom:8px}
+.mv-d{font-size:.86rem;color:var(--wm);line-height:1.65}
+.mv-card.red-card .mv-d{color:rgba(255,255,255,.82)}
+.wf-list{margin-top:28px}
+.wf-item{display:flex;gap:14px;align-items:flex-start;margin-bottom:24px}
+.wf-ico{width:42px;height:42px;flex-shrink:0;background:rgba(227,6,19,.1);border:1px solid rgba(227,6,19,.22);color:var(--red);display:flex;align-items:center;justify-content:center;font-size:.95rem}
+.wf-t{font-family:var(--fh);font-size:1rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--w);margin-bottom:3px}
+.wf-d{font-size:.86rem;color:var(--wm);line-height:1.6}
+
+/* ── SERVICES ── */
+#services{background:var(--black)}
+.svc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(272px,1fr));gap:2px}
+.svc-card{background:var(--bc);padding:38px 30px;position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.04);cursor:default;transition:transform .3s ease}
+.svc-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--red) 0%,var(--red-dark) 100%);transform:scaleY(0);transform-origin:bottom;transition:transform .38s cubic-bezier(.4,0,.2,1);z-index:0}
+.svc-card:hover::before{transform:scaleY(1)}
+.svc-card:hover{transform:translateY(-4px)}
+.svc-card>*{position:relative;z-index:1}
+.sc-num{position:absolute;top:18px;right:22px;font-family:var(--fd);font-size:3.8rem;color:rgba(255,255,255,.04);line-height:1;z-index:1;transition:color .3s}
+.svc-card:hover .sc-num{color:rgba(255,255,255,.08)}
+.sc-ico{width:54px;height:54px;border:2px solid var(--red);color:var(--red);display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:22px;transition:border-color .3s,color .3s}
+.svc-card:hover .sc-ico{border-color:rgba(255,255,255,.45);color:var(--w)}
+.sc-t{font-family:var(--fh);font-size:1.2rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--w);margin-bottom:10px}
+.sc-d{font-size:.87rem;color:var(--wm);line-height:1.65}
+.svc-card:hover .sc-d{color:rgba(255,255,255,.84)}
+.sc-arr{display:inline-flex;align-items:center;gap:6px;margin-top:18px;font-family:var(--fh);font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--red);transition:color .3s,gap .3s}
+.svc-card:hover .sc-arr{color:var(--w);gap:10px}
+
+/* ── PROCESS ── */
+#process{background:var(--bm)}
+.proc-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative}
+.proc-line{position:absolute;top:35px;left:10%;right:10%;height:2px;background:linear-gradient(90deg,var(--red) 0%,rgba(227,6,19,.1) 100%)}
+.proc-step{text-align:center;padding:0 16px;position:relative;z-index:1}
+.proc-n{width:70px;height:70px;margin:0 auto 22px;background:var(--black);border:2px solid var(--red);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:1.7rem;color:var(--red);transition:background .25s,color .25s}
+.proc-step:hover .proc-n{background:var(--red);color:var(--w)}
+.proc-t{font-family:var(--fh);font-size:1.05rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--w);margin-bottom:8px}
+.proc-d{font-size:.83rem;color:var(--wm);line-height:1.6}
+
+/* ── PORTFOLIO ── */
+#portfolio{background:var(--bs)}
+.pf-filter{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:38px}
+.pf-btn{font-family:var(--fh);font-size:.82rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:8px 20px;background:transparent;color:var(--wm);border:1px solid rgba(255,255,255,.11);cursor:pointer;transition:all .22s}
+.pf-btn.active,.pf-btn:hover{background:var(--red);color:var(--w);border-color:var(--red)}
+.pf-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.pf-item{position:relative;overflow:hidden;aspect-ratio:4/3;background:var(--bc);cursor:pointer}
+.pf-bg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;transition:transform .5s ease}
+.pf-item:hover .pf-bg{transform:scale(1.08)}
+.pf-pat{width:100%;height:100%;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:28px 28px}
+.pf-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(227,6,19,.95) 0%,rgba(0,0,0,.55) 60%,transparent 100%);transform:translateY(101%);transition:transform .38s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column;justify-content:flex-end;padding:22px}
+.pf-item:hover .pf-ov{transform:translateY(0)}
+.pf-cat{font-family:var(--fh);font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.68);margin-bottom:4px}
+.pf-title{font-family:var(--fh);font-size:1.15rem;font-weight:800;text-transform:uppercase;color:var(--w)}
+
+/* ── TESTIMONIALS ── */
+#testimonials{background:var(--bm);overflow:hidden}
+.t-wrap{overflow:hidden;position:relative}
+.t-track{display:flex;gap:22px;animation:tscroll 30s linear infinite;width:max-content}
+.t-track:hover{animation-play-state:paused}
+@keyframes tscroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.t-card{width:340px;flex-shrink:0;background:var(--bc);border:1px solid rgba(255,255,255,.06);padding:30px}
+.t-stars{color:var(--red);font-size:.88rem;margin-bottom:14px}
+.t-q{font-size:.92rem;color:var(--wm);line-height:1.72;margin-bottom:22px;font-style:italic}
+.t-q::before{content:'"';color:var(--red);font-size:2rem;line-height:0;vertical-align:-.4em;margin-right:3px}
+.t-auth{display:flex;align-items:center;gap:13px}
+.t-av{width:44px;height:44px;background:var(--red);display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:1.15rem;color:var(--w)}
+.t-name{font-family:var(--fh);font-size:.96rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--w)}
+.t-role{font-size:.76rem;color:var(--wm)}
+
+/* ── CONTACT ── */
+#contact{background:var(--black)}
+.cf-wrap{background:var(--bc);border:1px solid rgba(255,255,255,.06);padding:44px}
+.cf-title{font-family:var(--fh);font-size:1.4rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;margin-bottom:26px}
+.form-label{font-family:var(--fh);font-size:.78rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--wm);margin-bottom:7px}
+.form-control,.form-select{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);color:var(--w);border-radius:0;padding:13px 15px;font-family:var(--fb);transition:border-color .22s}
+.form-control:focus,.form-select:focus{background:rgba(255,255,255,.06);border-color:var(--red);color:var(--w);box-shadow:0 0 0 3px rgba(227,6,19,.1)}
+.form-control::placeholder{color:rgba(255,255,255,.22)}
+.form-select option{background:var(--bc)}
+textarea.form-control{resize:vertical;min-height:120px}
+.ci-item{display:flex;align-items:flex-start;gap:15px;margin-bottom:26px}
+.ci-ico{width:46px;height:46px;flex-shrink:0;background:var(--red);display:flex;align-items:center;justify-content:center;font-size:1rem;color:var(--w)}
+.ci-ico.wa{background:#25D366}
+.ci-l{font-family:var(--fh);font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--wm);margin-bottom:3px}
+.ci-v{font-size:.92rem;color:var(--w)}
+.ci-v a{color:var(--w)}
+.ci-v a.wa-link{color:#25D366}
+.map-embed{width:100%;height:280px;border:none;filter:invert(90%) hue-rotate(180deg);margin-top:28px}
+.hours-row{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:.88rem}
+.hours-row:last-child{border-bottom:none}
+
+/* ── CTA BAND ── */
+.cta-band{background:var(--red);padding:78px 0;position:relative;overflow:hidden;text-align:center}
+.cta-band::before{content:'OUTDO';position:absolute;font-family:var(--fd);font-size:16rem;color:rgba(255,255,255,.04);top:50%;left:50%;transform:translate(-50%,-50%);white-space:nowrap;letter-spacing:.1em;pointer-events:none}
+.cta-band>div{position:relative;z-index:1}
+.cb-t{font-family:var(--fd);font-size:clamp(2.4rem,4.5vw,4.5rem);color:var(--w);line-height:1;margin-bottom:14px}
+.cb-s{font-size:1rem;color:rgba(255,255,255,.8);margin-bottom:32px}
+
+/* ── FOOTER ── */
+#footer{background:var(--bm);border-top:1px solid rgba(255,255,255,.05);padding:76px 0 30px}
+.ft-logo{font-family:var(--fd);font-size:2.1rem;color:var(--w);letter-spacing:.04em;margin-bottom:13px}
+.ft-logo span{color:var(--red)}
+.ft-desc{font-size:.86rem;color:var(--wm);line-height:1.72;max-width:270px}
+.ft-social{display:flex;gap:9px;margin-top:22px}
+.soc-btn{width:37px;height:37px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;color:var(--wm);font-size:.88rem;transition:background .22s,color .22s}
+.soc-btn:hover{background:var(--red);color:var(--w)}
+.ft-head{font-family:var(--fh);font-size:.95rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--w);margin-bottom:18px;padding-bottom:9px;border-bottom:2px solid var(--red);display:inline-block}
+.ft-links{list-style:none}
+.ft-links li{margin-bottom:9px}
+.ft-links a{font-size:.88rem;color:var(--wm);display:flex;align-items:center;gap:7px;transition:color .2s,gap .2s}
+.ft-links a:hover{color:var(--red);gap:11px}
+.ft-links a::before{content:'›';color:var(--red)}
+.ft-bottom{margin-top:56px;padding-top:22px;border-top:1px solid rgba(255,255,255,.05);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.ft-copy{font-size:.79rem;color:rgba(255,255,255,.32)}
+.ft-copy span{color:var(--red)}
+
+/* ── FLOATING ── */
+#wa-btn{position:fixed;bottom:28px;right:22px;z-index:900;width:52px;height:52px;background:#25D366;display:flex;align-items:center;justify-content:center;font-size:1.45rem;color:var(--w);box-shadow:0 4px 18px rgba(37,211,102,.32);animation:wabounce 2s infinite}
+#wa-btn:hover{background:#1ebe5c;color:var(--w)}
+@keyframes wabounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+#btt{position:fixed;bottom:28px;left:22px;z-index:900;width:42px;height:42px;background:var(--red);display:flex;align-items:center;justify-content:center;font-size:.95rem;color:var(--w);opacity:0;pointer-events:none;transition:opacity .3s;cursor:pointer}
+#btt.show{opacity:1;pointer-events:all}
+#btt:hover{background:var(--red-dark)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:991px){
+  .nav-links{display:none}.nav-toggle{display:block}
+  .nav-inner{padding:16px 22px}
+  .h-rings{width:300px;height:300px}
+  .pf-grid{grid-template-columns:repeat(2,1fr)}
+  .proc-grid{grid-template-columns:repeat(2,1fr);gap:40px}
+  .proc-line{display:none}
+  .mv-cards{grid-template-columns:1fr 1fr}
+}
+@media(max-width:767px){
+  .sp{padding:68px 0}
+  .hero-h1{font-size:clamp(2.6rem,10vw,4.8rem)}
+  .pf-grid{grid-template-columns:1fr 1fr}
+  .h-rings{display:none}
+  .hero-stats{gap:22px}
+  .sbar{flex-direction:column}
+  .sb-item{border-right:none;border-bottom:1px solid rgba(255,255,255,.14)}
+  .sb-item:last-child{border-bottom:none}
+  .cf-wrap{padding:26px 18px}
+  .ft-bottom{flex-direction:column;text-align:center}
+  .proc-grid{grid-template-columns:1fr 1fr}
+  .mv-cards{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+  .hero-btns{flex-direction:column}
+  .btn-r,.btn-o{justify-content:center}
+  .pf-grid{grid-template-columns:1fr}
+  .proc-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="ld-logo">OUTDO <span>SYSTEM</span></div>
+  <div class="ld-sub">Web Development & Digital Marketing Agency</div>
+  <div class="ld-bar"></div>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-brand">OUTDO <span>SYSTEM</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#contact" class="nav-cta"><i class="bi bi-lightning-charge-fill"></i> Free Consultation</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle"><i class="bi bi-list"></i></button>
+  </div>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="mob-nav" id="mobNav">
+  <button class="mob-close" id="mobClose"><i class="bi bi-x-lg"></i></button>
+  <a href="#hero"      onclick="closeMob()">HOME</a>
+  <a href="#about"     onclick="closeMob()">ABOUT</a>
+  <a href="#services"  onclick="closeMob()">SERVICES</a>
+  <a href="#portfolio" onclick="closeMob()">PORTFOLIO</a>
+  <a href="#contact"   onclick="closeMob()">CONTACT</a>
+</div>
+
+<!-- ════════════════════════════════════════
+     HERO
+════════════════════════════════════════ -->
+<section id="hero" class="gbg">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-7">
+        <div class="hero-cont">
+          <div class="hero-badge" data-aos="fade-down" data-aos-delay="100">
+            <i class="bi bi-circle-fill" style="font-size:.5rem"></i>
+            Digital Growth Agency — Ludhiana, Punjab
+          </div>
+          <h1 class="hero-h1" data-aos="fade-up" data-aos-delay="200">
+            GROW<br>YOUR <span class="red">BRAND</span><br><span class="stroke">DIGITALLY</span>
+          </h1>
+          <p class="hero-sub" data-aos="fade-up" data-aos-delay="310">
+            Creative Solutions. Real Results.<br>
+            We Grow, <strong style="color:var(--red)">You Grow.</strong> End-to-end digital transformation for businesses ready to lead.
+          </p>
+          <div class="hero-btns" data-aos="fade-up" data-aos-delay="400">
+            <a class="btn-r" href="#contact"><i class="bi bi-lightning-charge-fill"></i> Get Free Consultation</a>
+            <a class="btn-o" href="#services"><i class="bi bi-grid-3x3-gap"></i> View Services</a>
+          </div>
+          <div class="hero-stats" data-aos="fade-up" data-aos-delay="480">
+            <div><div class="hstat-n"><span class="counter" data-target="100">0</span>+</div><div class="hstat-l">Projects Done</div></div>
+            <div><div class="hstat-n"><span class="counter" data-target="50">0</span>+</div><div class="hstat-l">Happy Clients</div></div>
+            <div><div class="hstat-n"><span class="counter" data-target="5">0</span>+</div><div class="hstat-l">Years Experience</div></div>
+            <div><div class="hstat-n" style="color:var(--red)">24/7</div><div class="hstat-l">Support</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5 d-none d-lg-flex justify-content-center">
+        <div style="position:relative">
+          <div class="h-rings">
+            <div class="ring"><div class="ring-dot"></div></div>
+            <div class="ring"><div class="ring-dot"></div></div>
+            <div class="ring"><div class="ring-dot"></div></div>
+            <div class="ring"><div class="ring-dot"></div></div>
+            <div class="h-icon-box"><div class="h-icon"><i class="bi bi-rocket-takeoff-fill"></i></div></div>
+          </div>
+          <div class="fc fc1">
+            <div class="fc-ico"><i class="bi bi-graph-up-arrow"></i></div>
+            <div><div class="fc-l">Growth Rate</div><div class="fc-v">+240%</div></div>
+          </div>
+          <div class="fc fc2">
+            <div class="fc-ico"><i class="bi bi-star-fill"></i></div>
+            <div><div class="fc-l">Client Rating</div><div class="fc-v">5.0 ★★★★★</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div id="statsbar">
+  <div class="sbar">
+    <div class="sb-item" data-aos="zoom-in" data-aos-delay="0"><div class="sb-n"><span class="counter" data-target="100">0</span>+</div><div class="sb-t">Projects Completed</div></div>
+    <div class="sb-item" data-aos="zoom-in" data-aos-delay="80"><div class="sb-n"><span class="counter" data-target="50">0</span>+</div><div class="sb-t">Happy Clients</div></div>
+    <div class="sb-item" data-aos="zoom-in" data-aos-delay="160"><div class="sb-n"><span class="counter" data-target="5">0</span>+</div><div class="sb-t">Years Experience</div></div>
+    <div class="sb-item" data-aos="zoom-in" data-aos-delay="240"><div class="sb-n">24/7</div><div class="sb-t">Support Available</div></div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     ABOUT
+════════════════════════════════════════ -->
+<section id="about" class="sp">
+  <div class="container">
+    <!-- Intro row -->
+    <div class="row g-5 align-items-center mb-5">
+      <div class="col-lg-5" data-aos="fade-right">
+        <div class="about-img">
+          <div class="about-grid-pat"></div>
+          <i class="bi bi-shield-check-fill" style="font-size:6.5rem;color:rgba(227,6,19,.13);position:relative;z-index:1"></i>
+          <div class="about-badge"><div class="about-badge-n">5+</div><div class="about-badge-t">Years of<br>Excellence</div></div>
+        </div>
+      </div>
+      <div class="col-lg-7" data-aos="fade-left" data-aos-delay="100">
+        <span class="s-label">Who We Are</span>
+        <h2 class="s-title">WE ARE <span>OUTDO</span> SYSTEM</h2>
+        <div class="divider"></div>
+        <p class="s-sub mb-3">Outdo System is a full-service Web Development &amp; Digital Marketing Agency based in Ludhiana, Punjab. We partner with businesses of all sizes to build powerful digital presences that generate real, measurable growth.</p>
+        <p style="font-size:.92rem;color:var(--wm);line-height:1.75;max-width:540px">With a team of passionate designers, developers, marketers, and strategists — we don't just complete projects, we build long-term growth engines for our clients. Every strategy is tied to measurable KPIs, and every delivery is on-time and on-budget.</p>
+        <div class="wf-list" style="margin-top:24px">
+          <div class="wf-item">
+            <div class="wf-ico"><i class="bi bi-graph-up-arrow"></i></div>
+            <div><div class="wf-t">Results-First Approach</div><div class="wf-d">Every campaign is tied to measurable KPIs. We track, optimize, and deliver real, quantifiable growth.</div></div>
+          </div>
+          <div class="wf-item">
+            <div class="wf-ico"><i class="bi bi-people-fill"></i></div>
+            <div><div class="wf-t">Expert Team</div><div class="wf-d">Specialists in development, design, marketing, and strategy working as one cohesive unit for your success.</div></div>
+          </div>
+          <div class="wf-item">
+            <div class="wf-ico"><i class="bi bi-lightning-charge-fill"></i></div>
+            <div><div class="wf-t">Fast Delivery & 24/7 Support</div><div class="wf-d">On-time delivery guaranteed, with round-the-clock support to keep your business running smoothly.</div></div>
+          </div>
+        </div>
+        <div style="margin-top:28px"><a class="btn-r" href="#contact"><i class="bi bi-chat-dots-fill"></i> Talk To Us</a></div>
+      </div>
+    </div>
+
+    <!-- Mission / Vision / Values -->
+    <div class="row mt-5" data-aos="fade-up">
+      <div class="col-12 text-center mb-4">
+        <span class="s-label">Our Foundation</span>
+        <h2 class="s-title">MISSION, VISION <span>&amp; VALUES</span></h2>
+        <div class="divider mx-auto"></div>
+      </div>
+    </div>
+    <div class="mv-cards" data-aos="fade-up" data-aos-delay="100">
+      <div class="mv-card">
+        <div class="mv-ico"><i class="bi bi-bullseye"></i></div>
+        <div class="mv-t">Our Mission</div>
+        <div class="mv-d">To empower businesses with cutting-edge digital solutions that are results-driven, scalable, and built for the future of marketing.</div>
+      </div>
+      <div class="mv-card">
+        <div class="mv-ico"><i class="bi bi-eye-fill"></i></div>
+        <div class="mv-t">Our Vision</div>
+        <div class="mv-d">To be the most trusted digital growth partner for businesses across India, delivering innovation that creates lasting market leadership.</div>
+      </div>
+      <div class="mv-card red-card">
+        <div class="mv-ico"><i class="bi bi-trophy-fill"></i></div>
+        <div class="mv-t">We Grow, You Grow</div>
+        <div class="mv-d">Your success is our success. Every metric we target is tied directly to your bottom line and business growth.</div>
+      </div>
+      <div class="mv-card">
+        <div class="mv-ico"><i class="bi bi-heart-fill" style="color:var(--red)"></i></div>
+        <div class="mv-t">Our Values</div>
+        <div class="mv-d">Integrity, creativity, and relentless pursuit of excellence. We treat every client's business as if it were our own.</div>
+      </div>
+    </div>
+
+    <!-- Team -->
+    <div class="row mt-5 pt-3" data-aos="fade-up">
+      <div class="col-12 text-center mb-4">
+        <span class="s-label">The People Behind the Work</span>
+        <h2 class="s-title">MEET THE <span>TEAM</span></h2>
+        <div class="divider mx-auto"></div>
+      </div>
+    </div>
+    <div class="row g-3" data-aos="fade-up" data-aos-delay="100">
+      <div class="col-6 col-md-3">
+        <div class="svc-card" style="text-align:center;padding:34px 18px">
+          <div style="width:76px;height:76px;background:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:1.9rem;color:var(--w);margin:0 auto 18px">RK</div>
+          <div class="sc-t" style="font-size:.95rem">Raman Kumar</div>
+          <div class="sc-d" style="font-size:.78rem;margin-top:5px">Founder &amp; CEO</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="svc-card" style="text-align:center;padding:34px 18px">
+          <div style="width:76px;height:76px;background:var(--black);border:2px solid var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:1.9rem;color:var(--red);margin:0 auto 18px">AK</div>
+          <div class="sc-t" style="font-size:.95rem">Arjun Kaur</div>
+          <div class="sc-d" style="font-size:.78rem;margin-top:5px">Lead Developer</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="svc-card" style="text-align:center;padding:34px 18px">
+          <div style="width:76px;height:76px;background:var(--black);border:2px solid var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:1.9rem;color:var(--red);margin:0 auto 18px">SM</div>
+          <div class="sc-t" style="font-size:.95rem">Simran Mehta</div>
+          <div class="sc-d" style="font-size:.78rem;margin-top:5px">Marketing Head</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="svc-card" style="text-align:center;padding:34px 18px">
+          <div style="width:76px;height:76px;background:var(--black);border:2px solid var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--fd);font-size:1.9rem;color:var(--red);margin:0 auto 18px">PG</div>
+          <div class="sc-t" style="font-size:.95rem">Preet Gill</div>
+          <div class="sc-d" style="font-size:.78rem;margin-top:5px">Design Director</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     SERVICES
+════════════════════════════════════════ -->
+<section id="services" class="sp" style="background:var(--black)">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-lg-6" data-aos="fade-up">
+        <span class="s-label">What We Offer</span>
+        <h2 class="s-title">OUR <span>SERVICES</span></h2>
+        <div class="divider"></div>
+      </div>
+      <div class="col-lg-6 d-flex align-items-end" data-aos="fade-up" data-aos-delay="100">
+        <p class="s-sub">End-to-end digital solutions engineered to scale your business and dominate your market — all under one roof.</p>
+      </div>
+    </div>
+    <div class="svc-grid" data-aos="fade-up" data-aos-delay="150">
+      <div class="svc-card"><span class="sc-num">01</span><div class="sc-ico"><i class="bi bi-code-slash"></i></div><div class="sc-t">Website Design & Development</div><div class="sc-d">Custom, high-performance websites built to convert. Responsive, fast, and SEO-optimized from day one.</div><div class="sc-arr">Explore <i class="bi bi-arrow-right"></i></div></div>
+      <div class="svc-card"><span class="sc-num">02</span><div class="sc-ico"><i class="bi bi-megaphone-fill"></i></div><div class="sc-t">Digital Marketing</div><div class="sc-d">Full-funnel campaigns — PPC, email, content, and performance advertising. Every rupee tracked, every campaign optimized.</div><div class="sc-arr">Explore <i class="bi bi-arrow-right"></i></div></div>
+      <div class="svc-card"><span class="sc-num">03</span><div class="sc-ico"><i class="bi bi-search"></i></div><div class="sc-t">SEO Optimization</div><div class="sc-d">Technical SEO, on-page optimization, backlink building &amp; local SEO. Get found by the right people at the right time.</div><div class="sc-arr">Explore <i class="bi bi-arrow-right"></i></div></div>
+      <div class="svc-card"><span class="sc-num">04</span><div class="sc-ico"><i class="bi bi-instagram"></i></div><div class="sc-t">Social Media Marketing</div><div class="sc-d">Strategy, content, scheduling &amp; community management across Instagram, Facebook, LinkedIn, YouTube &amp; more.</div><div class="sc-arr">Explore <i class="bi bi-arrow-right"></i></div></div>
+      <div class="svc-card"><span class="sc-num">05</span><div class="sc-ico"><i class="bi bi-palette-fill"></i></div><div class="sc-t">Graphic Designing</div><div class="sc-d">Logos, brand kits, social creatives, marketing collateral &amp; packaging design. Design that communicates and converts.</div><div class="sc-arr">Explore <i class="bi bi-arrow-right"></i></div></div>
+      <div class="svc-card"><span class="sc-num">06</span><div class="sc-ico"><i class="bi bi-camera-video-fill"></i></div><div class="sc-t">Video Editing & Animation</div><div class="sc-d">Cinematic edits, motion graphics, 2D animation, reels, explainer videos, and product showcases that demand attention.</div><div class="sc-arr">Explore <i class="bi bi-arrow-right"></i></div></div>
+      <div class="svc-card"><span class="sc-num">07</span><div class="sc-ico"><i class="bi bi-funnel-fill"></i></div><div class="sc-t">Lead Generation</div><div class="sc-d">Precision targeting, conversion-optimized landing pages &amp; automated lead nurturing. Fill your pipeline with qualified prospects.</div><div class="sc-arr">Explore <i class="bi bi-arrow-right"></i></div></div>
+      <div class="svc-card"><span class="sc-num">08</span><div class="sc-ico"><i class="bi bi-award-fill"></i></div><div class="sc-t">Branding & Business Growth</div><div class="sc-d">Brand strategy, positioning, visual identity &amp; go-to-market strategy. Build a brand that commands premium pricing.</div><div class="sc-arr">Explore <i class="bi bi-arrow-right"></i></div></div>
+    </div>
+
+    <!-- Process subsection -->
+    <div class="row mt-5 pt-4" data-aos="fade-up">
+      <div class="col-12 text-center mb-5">
+        <span class="s-label">How We Work</span>
+        <h2 class="s-title">OUR <span>PROCESS</span></h2>
+        <div class="divider mx-auto"></div>
+      </div>
+    </div>
+    <div class="proc-grid" data-aos="fade-up" data-aos-delay="100">
+      <div class="proc-line d-none d-lg-block"></div>
+      <div class="proc-step"><div class="proc-n">01</div><div class="proc-t">Discovery</div><div class="proc-d">We audit your position, study competitors, and define clear goals and KPIs.</div></div>
+      <div class="proc-step"><div class="proc-n">02</div><div class="proc-t">Strategy</div><div class="proc-d">A custom growth blueprint tailored to your audience, budget, and objectives.</div></div>
+      <div class="proc-step"><div class="proc-n">03</div><div class="proc-t">Execution</div><div class="proc-d">Our specialists execute with precision — on-brand, on-time, and on-budget.</div></div>
+      <div class="proc-step"><div class="proc-n">04</div><div class="proc-t">Optimize</div><div class="proc-d">Data analysis &amp; continuous iteration to maximize performance and ROI.</div></div>
+      <div class="proc-step"><div class="proc-n">05</div><div class="proc-t">Scale</div><div class="proc-d">Proven results, amplified. We double down on what works and scale your growth.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND 1 -->
+<div class="cta-band">
+  <div class="container">
+    <div class="cb-t">READY TO GROW<br>YOUR BRAND?</div>
+    <div class="cb-s">Join 50+ businesses that chose Outdo System to dominate their market.</div>
+    <a class="btn-w" href="#contact"><i class="bi bi-lightning-charge-fill"></i> Start Your Journey Today</a>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     PORTFOLIO
+════════════════════════════════════════ -->
+<section id="portfolio" class="sp" style="background:var(--bs)">
+  <div class="container">
+    <div class="row mb-5 align-items-end">
+      <div class="col-lg-7" data-aos="fade-up">
+        <span class="s-label">Our Work</span>
+        <h2 class="s-title">RECENT <span>PROJECTS</span></h2>
+        <div class="divider"></div>
+        <p class="s-sub">Real projects, real results. Browse our work across web, marketing, branding, and design.</p>
+      </div>
+    </div>
+    <div class="pf-filter" id="pfFilter">
+      <button class="pf-btn active" data-filter="all">All Work</button>
+      <button class="pf-btn" data-filter="web">Website Design</button>
+      <button class="pf-btn" data-filter="marketing">Marketing</button>
+      <button class="pf-btn" data-filter="branding">Branding</button>
+      <button class="pf-btn" data-filter="graphics">Graphic Design</button>
+    </div>
+    <div class="pf-grid" id="pfGrid" data-aos="fade-up" data-aos-delay="100">
+      <div class="pf-item" data-cat="web"><div class="pf-bg"><div class="pf-pat"></div><i class="bi bi-display" style="position:absolute;font-size:5.5rem;color:rgba(255,255,255,.05)"></i></div><div class="pf-ov"><div class="pf-cat">Website Design</div><div class="pf-title">E-Commerce Platform</div></div></div>
+      <div class="pf-item" data-cat="marketing" style="background:linear-gradient(135deg,#1a0000,#0d0d0d)"><div class="pf-bg"><div class="pf-pat"></div><i class="bi bi-graph-up" style="position:absolute;font-size:5.5rem;color:rgba(227,6,19,.1)"></i></div><div class="pf-ov"><div class="pf-cat">Digital Marketing</div><div class="pf-title">Lead Gen Campaign</div></div></div>
+      <div class="pf-item" data-cat="branding"><div class="pf-bg"><div class="pf-pat"></div><i class="bi bi-award" style="position:absolute;font-size:5.5rem;color:rgba(255,255,255,.05)"></i></div><div class="pf-ov"><div class="pf-cat">Branding</div><div class="pf-title">Startup Brand Identity</div></div></div>
+      <div class="pf-item" data-cat="graphics" style="background:linear-gradient(135deg,#0a0000,#141414)"><div class="pf-bg"><div class="pf-pat"></div><i class="bi bi-palette" style="position:absolute;font-size:5.5rem;color:rgba(227,6,19,.1)"></i></div><div class="pf-ov"><div class="pf-cat">Graphic Design</div><div class="pf-title">Social Media Kit</div></div></div>
+      <div class="pf-item" data-cat="web"><div class="pf-bg"><div class="pf-pat"></div><i class="bi bi-phone" style="position:absolute;font-size:5.5rem;color:rgba(255,255,255,.05)"></i></div><div class="pf-ov"><div class="pf-cat">Website Design</div><div class="pf-title">Mobile App Landing</div></div></div>
+      <div class="pf-item" data-cat="marketing" style="background:linear-gradient(135deg,#0a0a0a,#1a0000)"><div class="pf-bg"><div class="pf-pat"></div><i class="bi bi-instagram" style="position:absolute;font-size:5.5rem;color:rgba(227,6,19,.1)"></i></div><div class="pf-ov"><div class="pf-cat">Social Media</div><div class="pf-title">Instagram Growth Strategy</div></div></div>
+      <div class="pf-item" data-cat="branding"><div class="pf-bg"><div class="pf-pat"></div><i class="bi bi-gem" style="position:absolute;font-size:5.5rem;color:rgba(255,255,255,.05)"></i></div><div class="pf-ov"><div class="pf-cat">Branding</div><div class="pf-title">Luxury Brand Rebrand</div></div></div>
+      <div class="pf-item" data-cat="graphics" style="background:linear-gradient(135deg,#1a0000,#0d0d0d)"><div class="pf-bg"><div class="pf-pat"></div><i class="bi bi-camera-video" style="position:absolute;font-size:5.5rem;color:rgba(227,6,19,.1)"></i></div><div class="pf-ov"><div class="pf-cat">Video Editing</div><div class="pf-title">Product Launch Reel</div></div></div>
+      <div class="pf-item" data-cat="web"><div class="pf-bg"><div class="pf-pat"></div><i class="bi bi-shop" style="position:absolute;font-size:5.5rem;color:rgba(255,255,255,.05)"></i></div><div class="pf-ov"><div class="pf-cat">Website Design</div><div class="pf-title">Restaurant Booking Portal</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials" class="sp">
+  <div class="container mb-5">
+    <div class="text-center" data-aos="fade-up">
+      <span class="s-label">Client Love</span>
+      <h2 class="s-title">WHAT THEY <span>SAY</span></h2>
+      <div class="divider mx-auto"></div>
+    </div>
+  </div>
+  <div class="t-wrap">
+    <div class="t-track">
+      <div class="t-card"><div class="t-stars">★★★★★</div><div class="t-q">Outdo System transformed our online presence. Website traffic went up 300% in 3 months and leads keep pouring in!</div><div class="t-auth"><div class="t-av">RK</div><div><div class="t-name">Rahul Kumar</div><div class="t-role">CEO, TechStart India</div></div></div></div>
+      <div class="t-card"><div class="t-stars">★★★★★</div><div class="t-q">Best digital marketing agency in Ludhiana. Professional, responsive, and genuinely invested in our growth. Highly recommended!</div><div class="t-auth"><div class="t-av">PS</div><div><div class="t-name">Priya Sharma</div><div class="t-role">Founder, StyleCraft</div></div></div></div>
+      <div class="t-card"><div class="t-stars">★★★★★</div><div class="t-q">They built us a stunning website and our Google rankings jumped from page 5 to page 1 in just 60 days. Incredible results!</div><div class="t-auth"><div class="t-av">AK</div><div><div class="t-name">Amit Kaur</div><div class="t-role">Director, Punjab Foods</div></div></div></div>
+      <div class="t-card"><div class="t-stars">★★★★★</div><div class="t-q">Social media presence went from 200 to 15,000 followers in 4 months. Content and strategy was simply outstanding.</div><div class="t-auth"><div class="t-av">MG</div><div><div class="t-name">Mohan Gupta</div><div class="t-role">Owner, MG Enterprises</div></div></div></div>
+      <div class="t-card"><div class="t-stars">★★★★★</div><div class="t-q">The branding they created is world-class. Every touchpoint feels premium. We've closed 5 enterprise deals thanks to our new brand identity.</div><div class="t-auth"><div class="t-av">SB</div><div><div class="t-name">Simran Bajwa</div><div class="t-role">MD, Bajwa Group</div></div></div></div>
+      <!-- duplicates for infinite loop -->
+      <div class="t-card"><div class="t-stars">★★★★★</div><div class="t-q">Outdo System transformed our online presence. Website traffic went up 300% in 3 months and leads keep pouring in!</div><div class="t-auth"><div class="t-av">RK</div><div><div class="t-name">Rahul Kumar</div><div class="t-role">CEO, TechStart India</div></div></div></div>
+      <div class="t-card"><div class="t-stars">★★★★★</div><div class="t-q">Best digital marketing agency in Ludhiana. Professional, responsive, and genuinely invested in our growth. Highly recommended!</div><div class="t-auth"><div class="t-av">PS</div><div><div class="t-name">Priya Sharma</div><div class="t-role">Founder, StyleCraft</div></div></div></div>
+      <div class="t-card"><div class="t-stars">★★★★★</div><div class="t-q">They built us a stunning website and our Google rankings jumped from page 5 to page 1 in just 60 days. Incredible results!</div><div class="t-auth"><div class="t-av">AK</div><div><div class="t-name">Amit Kaur</div><div class="t-role">Director, Punjab Foods</div></div></div></div>
+      <div class="t-card"><div class="t-stars">★★★★★</div><div class="t-q">Social media presence went from 200 to 15,000 followers in 4 months. Content and strategy was simply outstanding.</div><div class="t-auth"><div class="t-av">MG</div><div><div class="t-name">Mohan Gupta</div><div class="t-role">Owner, MG Enterprises</div></div></div></div>
+      <div class="t-card"><div class="t-stars">★★★★★</div><div class="t-q">The branding they created is world-class. Every touchpoint feels premium. We've closed 5 enterprise deals thanks to our new brand identity.</div><div class="t-auth"><div class="t-av">SB</div><div><div class="t-name">Simran Bajwa</div><div class="t-role">MD, Bajwa Group</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     CONTACT
+════════════════════════════════════════ -->
+<section id="contact" class="sp" style="background:var(--black)">
+  <div class="container">
+    <div class="text-center mb-5" data-aos="fade-up">
+      <span class="s-label">Get In Touch</span>
+      <h2 class="s-title">CONTACT <span>US</span></h2>
+      <div class="divider mx-auto"></div>
+      <p class="s-sub mx-auto" style="max-width:540px">Ready to grow? Talk to our team and get a free strategy consultation for your business.</p>
+    </div>
+    <div class="row g-5">
+      <div class="col-lg-7" data-aos="fade-right">
+        <div class="cf-wrap">
+          <div class="cf-title">Send Us a Message</div>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label">Your Name *</label>
+              <input type="text" class="form-control" placeholder="Raman Kumar"/>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Email Address *</label>
+              <input type="email" class="form-control" placeholder="your@email.com"/>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Phone Number</label>
+              <input type="tel" class="form-control" placeholder="+91 98765 43210"/>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Service Required</label>
+              <select class="form-select">
+                <option value="">Select a service</option>
+                <option>Website Design & Development</option>
+                <option>Digital Marketing</option>
+                <option>SEO Optimization</option>
+                <option>Social Media Marketing</option>
+                <option>Graphic Designing</option>
+                <option>Video Editing & Animation</option>
+                <option>Lead Generation</option>
+                <option>Branding & Business Growth</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <label class="form-label">Budget Range</label>
+              <select class="form-select">
+                <option value="">Select budget range</option>
+                <option>Under ₹10,000</option>
+                <option>₹10,000 – ₹25,000</option>
+                <option>₹25,000 – ₹50,000</option>
+                <option>₹50,000 – ₹1,00,000</option>
+                <option>₹1,00,000+</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <label class="form-label">Tell Us About Your Project *</label>
+              <textarea class="form-control" placeholder="Describe your project, goals, and what you'd like to achieve..."></textarea>
+            </div>
+            <div class="col-12">
+              <button class="btn-r" style="width:100%;justify-content:center" id="submitBtn" onclick="handleSubmit(this)">
+                <i class="bi bi-send-fill"></i> Send Message
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5" data-aos="fade-left" data-aos-delay="100">
+        <div style="padding-left:10px">
+          <h3 style="font-family:var(--fh);font-size:1.4rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;margin-bottom:30px">Contact Information</h3>
+          <div class="ci-item"><div class="ci-ico"><i class="bi bi-geo-alt-fill"></i></div><div><div class="ci-l">Our Office</div><div class="ci-v">Ludhiana, Punjab, India — 141001</div></div></div>
+          <div class="ci-item"><div class="ci-ico"><i class="bi bi-telephone-fill"></i></div><div><div class="ci-l">Call Us</div><div class="ci-v"><a href="tel:+919876543210">+91 98765 43210</a></div></div></div>
+          <div class="ci-item"><div class="ci-ico"><i class="bi bi-envelope-fill"></i></div><div><div class="ci-l">Email Us</div><div class="ci-v"><a href="mailto:info@outdosystem.com">info@outdosystem.com</a></div></div></div>
+          <div class="ci-item"><div class="ci-ico wa"><i class="bi bi-whatsapp"></i></div><div><div class="ci-l">WhatsApp</div><div class="ci-v"><a href="https://wa.me/919876543210" class="wa-link">Chat on WhatsApp</a></div></div></div>
+
+          <div style="margin-top:28px">
+            <h4 style="font-family:var(--fh);font-size:.95rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--wm);margin-bottom:14px">Business Hours</h4>
+            <div class="hours-row"><span style="color:var(--wm)">Monday – Friday</span><span>9:00 AM – 7:00 PM</span></div>
+            <div class="hours-row"><span style="color:var(--wm)">Saturday</span><span>10:00 AM – 5:00 PM</span></div>
+            <div class="hours-row"><span style="color:var(--wm)">Sunday</span><span style="color:var(--red)">Closed</span></div>
+          </div>
+
+          <iframe class="map-embed" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d109744.66326131097!2d75.73392!3d30.9009935!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391a837462345f8d%3A0x5b7db4c88eb1eaf9!2sLudhiana%2C%20Punjab!5e0!3m2!1sen!2sin!4v1716000000000" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+          <div style="display:flex;gap:10px;margin-top:26px;flex-wrap:wrap">
+            <a class="btn-r" href="https://wa.me/919876543210" target="_blank"><i class="bi bi-whatsapp"></i> WhatsApp Us</a>
+            <a class="btn-o" href="tel:+919876543210"><i class="bi bi-telephone-fill"></i> Call Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND 2 -->
+<div class="cta-band">
+  <div class="container">
+    <div class="cb-t">LET'S BUILD<br>SOMETHING GREAT</div>
+    <div class="cb-s">Every successful brand started with a single conversation. Let's have ours.</div>
+    <a class="btn-w" href="#contact"><i class="bi bi-arrow-right-circle-fill"></i> Get In Touch</a>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════ -->
+<footer id="footer">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-4">
+        <div class="ft-logo">OUTDO <span>SYSTEM</span></div>
+        <p class="ft-desc">Web Development & Digital Marketing Agency based in Ludhiana, Punjab. We build digital presences that generate real, measurable growth.</p>
+        <div class="ft-social">
+          <a href="#" class="soc-btn"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="soc-btn"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="soc-btn"><i class="bi bi-youtube"></i></a>
+          <a href="#" class="soc-btn"><i class="bi bi-linkedin"></i></a>
+          <a href="#" class="soc-btn"><i class="bi bi-twitter-x"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-6">
+        <div class="ft-head">Quick Links</div>
+        <ul class="ft-links">
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3 col-6">
+        <div class="ft-head">Services</div>
+        <ul class="ft-links">
+          <li><a href="#services">Web Development</a></li>
+          <li><a href="#services">Digital Marketing</a></li>
+          <li><a href="#services">SEO Optimization</a></li>
+          <li><a href="#services">Social Media</a></li>
+          <li><a href="#services">Graphic Design</a></li>
+          <li><a href="#services">Lead Generation</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3">
+        <div class="ft-head">Contact</div>
+        <div style="font-size:.86rem;color:var(--wm);line-height:2">
+          <div><i class="bi bi-geo-alt-fill" style="color:var(--red);margin-right:7px"></i>Ludhiana, Punjab — 141001</div>
+          <div><i class="bi bi-telephone-fill" style="color:var(--red);margin-right:7px"></i><a href="tel:+919876543210" style="color:var(--wm)">+91 98765 43210</a></div>
+          <div><i class="bi bi-envelope-fill" style="color:var(--red);margin-right:7px"></i><a href="mailto:info@outdosystem.com" style="color:var(--wm)">info@outdosystem.com</a></div>
+          <div><i class="bi bi-whatsapp" style="color:#25D366;margin-right:7px"></i><a href="https://wa.me/919876543210" style="color:#25D366">WhatsApp Us</a></div>
+        </div>
+        <div style="margin-top:22px"><a class="btn-r" href="#contact" style="font-size:.82rem;padding:10px 20px"><i class="bi bi-lightning-charge-fill"></i> Free Consultation</a></div>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <div class="ft-copy">© 2025 <span>Outdo System</span>. All Rights Reserved. | Ludhiana, Punjab, India</div>
+      <div class="ft-copy">Built with <span>♥</span> in Punjab, India</div>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+<a id="wa-btn" href="https://wa.me/919876543210" target="_blank" title="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+
+<!-- BACK TO TOP -->
+<div id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top"><i class="bi bi-arrow-up"></i></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+// Loader
+window.addEventListener('load',()=>{setTimeout(()=>document.getElementById('loader').classList.add('hide'),1700)});
+
+// AOS
+AOS.init({duration:680,once:true,offset:55});
+
+// Nav scroll + active section highlight
+const navEl=document.getElementById('nav');
+const sections=document.querySelectorAll('section[id],div[id="statsbar"]');
+const navAs=document.querySelectorAll('#navLinks a');
+window.addEventListener('scroll',()=>{
+  navEl.classList.toggle('scrolled',window.scrollY>50);
+  document.getElementById('btt').classList.toggle('show',window.scrollY>400);
+  // active link
+  let cur='';
+  sections.forEach(s=>{if(window.scrollY>=s.offsetTop-120)cur=s.id});
+  navAs.forEach(a=>{
+    a.classList.remove('active');
+    if(a.getAttribute('href')==='#'+cur)a.classList.add('active');
+  });
+});
+
+// Mobile nav
+document.getElementById('navToggle').addEventListener('click',()=>document.getElementById('mobNav').classList.add('open'));
+document.getElementById('mobClose').addEventListener('click',()=>document.getElementById('mobNav').classList.remove('open'));
+function closeMob(){document.getElementById('mobNav').classList.remove('open')}
+
+// Counters
+const co=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting)return;
+    const el=e.target,target=+el.dataset.target,dur=1800;
+    const step=Math.ceil(target/(dur/16));
+    let cur=0;
+    const t=setInterval(()=>{cur=Math.min(cur+step,target);el.textContent=cur;if(cur>=target)clearInterval(t)},16);
+    co.unobserve(el);
+  });
+},{threshold:.5});
+document.querySelectorAll('.counter').forEach(el=>co.observe(el));
+
+// Portfolio filter
+document.getElementById('pfFilter').addEventListener('click',e=>{
+  if(!e.target.classList.contains('pf-btn'))return;
+  document.querySelectorAll('.pf-btn').forEach(b=>b.classList.remove('active'));
+  e.target.classList.add('active');
+  const f=e.target.dataset.filter;
+  document.querySelectorAll('#pfGrid .pf-item').forEach(item=>{
+    item.style.display=(f==='all'||item.dataset.cat===f)?'':'none';
+  });
+});
+
+// Form submit
+function handleSubmit(btn){
+  const o=btn.innerHTML;
+  btn.innerHTML='<i class="bi bi-check2-circle"></i> Message Sent!';
+  btn.style.background='#22c55e';
+  setTimeout(()=>{btn.innerHTML=o;btn.style.background=''},3200);
+}
+</script>
+</body>
+</html>
